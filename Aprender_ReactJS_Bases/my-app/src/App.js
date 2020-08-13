@@ -1,27 +1,39 @@
-import React from 'react';
-import logo from './vslogo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import cars from './data/cars.json'
+//import ConditionalSection from './sections/conditional'
 
-function App() {
-  return (
+class CarItem extends Component {
+  render(){
+    const {car, id} = this.props
+
+    return (
+      <li>
+        <p>Key: {id}</p>
+        <p><strong>Nombre: </strong>{car.name}</p>
+        <p><strong>Marca: </strong>{car.company}</p>
+      </li>
+    )
+  }
+}
+
+class App extends Component {
+  render () {
+
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Bienvenidos a este curso</h1>
-        <h2>Vamos a aprender React</h2>
-        <p>Hola mundo, estoy usando React</p>
-        <strong>Esto es un strong</strong>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h4>Trabajando con listas</h4>
+      <ul>
+        {
+          cars.map(car => {
+            return <CarItem id={car.id} key={car.id} car={car}/>
+          })
+        }
+      </ul>
+
     </div>
   );
+
+  }
 }
 
 export default App;
